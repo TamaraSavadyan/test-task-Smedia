@@ -13,7 +13,7 @@ from app.schemas import CustomClient
 config = get_config()
 
 async def bootstrap(app: Client) -> CustomClient:
-    """Проделывает необходимую работу по инициализации классов нужных для работы воркера"""
+    '''Проделывает необходимую работу по инициализации классов нужных для работы воркера'''
     
     pool = await asyncpg.create_pool(config.PG_DSN)
     repository = UserRepository(pool)
@@ -26,7 +26,7 @@ async def bootstrap(app: Client) -> CustomClient:
 
 
 async def main():
-    app = Client("test", config.API_ID, config.API_HASH, bot_token=config.BOT_TOKEN)
+    app = Client('test', config.API_ID, config.API_HASH, bot_token=config.BOT_TOKEN)
     app = await bootstrap(app)
     
     app.add_handler(handlers.MessageHandler(get_statistics, filters.command('users_today')))
@@ -37,8 +37,6 @@ async def main():
     await idle()
     await app.stop()
 
-    # TODO: реализовано для бота, можно сделать для личного акка тг
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     asyncio.run(main())

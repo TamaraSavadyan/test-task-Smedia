@@ -27,4 +27,4 @@ async def echo(client: CustomClient, message: types.Message):
 
 async def get_statistics(client: CustomClient, message: types.Message):
     total_users = await client.db.get_user_statistics()
-    await client.send_message(message.from_user.id, f"Кол-во пользователей за сегодня - {total_users}")
+    await client.send_message(message.from_user.id, f'Кол-во пользователей за сегодня - {total_users}')

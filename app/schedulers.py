@@ -9,7 +9,7 @@ from app.config import get_config
 config = get_config()
 
 async def first_job(client: CustomClient, user_id: int):
-    await client.send_message(user_id, "Добрый день!")
+    await client.send_message(user_id, 'Добрый день!')
     logger.info(f'Succsessfully sended first message to user {user_id}')
 
     wake_up_at = datetime.now() + timedelta(minutes=config.SECOND_JOB_SCHEDULE_INTERVAL)
@@ -17,7 +17,7 @@ async def first_job(client: CustomClient, user_id: int):
 
 
 async def second_job(client: CustomClient, user_id: int):
-    await client.send_message(user_id, "Подготовила для вас материал")
+    await client.send_message(user_id, 'Подготовила для вас материал')
     # подлочим евент луп, для тестового не страшно
     with open('app/fixtures/smile.png', 'rb') as f:
         await client.send_photo(user_id, f)
@@ -36,5 +36,5 @@ async def third_job(client: CustomClient, user_id: int):
             logger.info(f'Found trigger word for third message to user {user_id}, cancel sending')
             return
 
-    await client.send_message(user_id, "Hi!")
+    await client.send_message(user_id, 'Hi!')
     logger.info(f'Succsessfully sended third message to user {user_id}')
